@@ -33,14 +33,17 @@ public class DialogueBox : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown (0) && playerTalking == false) {
-			ResetImages();
-
-			ParseLine();
+			ShowDialogue();
 
 			lineNum++;
 		}
 
 		UpdateUI ();
+	}
+
+	public void ShowDialogue() {
+		ResetImages ();
+		ParseLine ();
 	}
 
 	void UpdateUI() {
@@ -53,9 +56,10 @@ public class DialogueBox : MonoBehaviour {
 
 	void ClearButtons() {
 		for (int i = 0; i < buttons.Count; i++) {
+			print ("Clearing buttons");
 			Button b = buttons[i];
 			buttons.Remove(b);
-			Destroy(b);
+			Destroy(b.gameObject);
 		}
 	}
 
@@ -90,6 +94,7 @@ public class DialogueBox : MonoBehaviour {
 			cb.box = this;
 			b.transform.parent = this.transform;
 			b.transform.localPosition = new Vector3(0,-25 + (i*50));
+			b.transform.localScale = new Vector3(1, 1, 1);
 			buttons.Add (b);
 		}
 	}
@@ -121,9 +126,5 @@ public class DialogueBox : MonoBehaviour {
 			spriteObj.transform.position = new Vector3 (6, 0);
 		}
 		spriteObj.transform.position = new Vector3 (spriteObj.transform.position.x, spriteObj.transform.position.y, 0);
-	}
-
-	void ParseOption(string option) {
-
 	}
 }

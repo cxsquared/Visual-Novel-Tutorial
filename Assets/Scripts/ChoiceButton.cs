@@ -31,7 +31,7 @@ public class ChoiceButton : MonoBehaviour {
 		box.playerTalking = false;
 		if (command == "line") {
 			box.lineNum = int.Parse(commandModifier);
-
+			box.ShowDialogue ();
 		} else if (command == "scene") {
 			Application.LoadLevel("Scene" + commandModifier);
 		}
