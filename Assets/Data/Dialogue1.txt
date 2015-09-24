@@ -1,2 +1,5 @@
-Cody;"Hello, how are you?";0
-Steve;"I'm hella ok!";0
+Kyle;Hello, how are you?;0;L
+Orien;I'm hella ok!;0;R
+Kyle;Cool Cool;1;L
+Orien;Whatever I'm just going to talk a lot for testing purposes.;2;R
+Player;Restart:line,0;Next Scene?:scene,2

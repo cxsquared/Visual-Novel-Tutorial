@@ -14,11 +14,15 @@ public class DialogueParser : MonoBehaviour {
 		public string name;
 		public string content;
 		public int pose;
+		public string position;
+		public string[] options;
 
-		public DialogueLine(string n, string c, int p) {
-			name = n;
-			content = c;
-			pose = p;
+		public DialogueLine(string Name, string Content, int Pose, string Position) {
+			name = Name;
+			content = Content;
+			pose = Pose;
+			position = Position;
+			options = new string[0];
 		}
 	}
 
@@ -49,13 +53,30 @@ public class DialogueParser : MonoBehaviour {
 				line = r.ReadLine();
 				if (line != null) {
 					string[] lineData = line.Split(';');
-					DialogueLine lineEntry = new DialogueLine(lineData[0], lineData[1], int.Parse(lineData[2]));
-					lines.Add(lineEntry);
+					if (lineData[0] == "Player") {
+						DialogueLine lineEntry = new DialogueLine(lineData[0], "", 0, "");
+						lineEntry.options = new string[lineData.Length-1];
+						for (int i = 1; i < lineData.Length; i++) {
+							Debug.Log(lineData[i]);
+							lineEntry.options[i-1] = lineData[i];
+						}
+						lines.Add(lineEntry);
+					} else {
+						DialogueLine lineEntry = new DialogueLine(lineData[0], lineData[1], int.Parse(lineData[2]), lineData[3]);
+						lines.Add(lineEntry);
+					}
 				}
 			}
 			while (line != null);
 			r.Close();
 		}
+	}
+
+	public string GetPosition(int lineNumber) {
+		if (lineNumber < lines.Count) {
+			return lines[lineNumber].position;
+		}
+		return "";
 	}
 
 	public string GetName(int lineNumber) {
@@ -77,5 +98,12 @@ public class DialogueParser : MonoBehaviour {
 			return lines[lineNumber].pose;
 		}
 		return 0;
+	}
+
+	public string[] GetOptions(int lineNumber) {
+		if (lineNumber < lines.Count) {
+			return lines[lineNumber].options;
+		}
+		return new string[0];
 	}
 }

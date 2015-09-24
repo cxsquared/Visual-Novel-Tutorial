@@ -6,7 +6,7 @@ public class Character : MonoBehaviour {
 	// Variables
 	string characterName = "";
 	Sprite characterSprite = null;
-	Sprite[] characterPoses = null;
+	public Sprite[] characterPoses = null;
 
 	// Use this for initialization
 	void Start () {
