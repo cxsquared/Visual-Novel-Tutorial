@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ChoiceButton : MonoBehaviour {
 
 	public string option;
-	public DialogueBox box;
+	public DialogueManager box;
 
 	// Use this for initialization
 	void Start () {

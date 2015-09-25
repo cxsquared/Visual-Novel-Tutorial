@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class DialogueBox : MonoBehaviour {
+public class DialogueManager : MonoBehaviour {
 
 	DialogueParser parser;
 
@@ -22,7 +22,7 @@ public class DialogueBox : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		dialogue = "";
-		name = "";
+		characterName = "";
 		pose = 0;
 		position = "L";
 		playerTalking = false;
@@ -51,7 +51,7 @@ public class DialogueBox : MonoBehaviour {
 			ClearButtons();
 		}
 		dialogueBox.text = dialogue;
-		nameBox.text = name;
+		nameBox.text = characterName;
 	}
 
 	void ClearButtons() {

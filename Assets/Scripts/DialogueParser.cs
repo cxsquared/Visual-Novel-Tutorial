@@ -8,9 +8,7 @@ using System.Collections.Generic;
 
 public class DialogueParser : MonoBehaviour {
 
-	List<DialogueLine> lines;
-
-	struct DialogueLine {
+	struct DialogueLine { // The data of each line of dialogue
 		public string name;
 		public string content;
 		public int pose;
@@ -26,11 +24,14 @@ public class DialogueParser : MonoBehaviour {
 		}
 	}
 
+	List<DialogueLine> lines; // Storing the lines in a specific order
+
 	// Use this for initialization
 	void Start () {
 		string file = "Assets/Data/Dialogue";
-		string sceneNum = EditorApplication.currentScene;
-		sceneNum = Regex.Replace (sceneNum, "[^0-9]", "");
+		string sceneNum = EditorApplication.currentScene; // Gets the current Scene saved name aka Scene1
+		// Regex is a way to manipulate strings
+		sceneNum = Regex.Replace (sceneNum, "[^0-9]", ""); //Replace everything except numbers in the string with ""
 		file += sceneNum;
 		file += ".txt";
 
@@ -41,7 +42,6 @@ public class DialogueParser : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
 	}
 
 	void LoadDialogue(string filename) {
